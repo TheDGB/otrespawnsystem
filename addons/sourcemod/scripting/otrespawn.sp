@@ -20,7 +20,7 @@ Handle g_hHudSync;
 Handle g_hRespawnTimer[MAXPLAYERS + 1];
 
 /////////////////////////////////////////////// Outro
-ConVar g_cvEnable, g_cvLoser, g_cvDelay, g_cvWinner, g_cvHud;
+ConVar g_cvEnable, g_cvLoser, g_cvDelay, g_cvWinner, g_cvHud, g_cvBlue, g_cvRed;
 
 #define IN_ATTACK       (1 << 0)
 #define IN_JUMP         (1 << 1)
@@ -32,7 +32,7 @@ ConVar g_cvEnable, g_cvLoser, g_cvDelay, g_cvWinner, g_cvHud;
 #define IN_LEFT         (1 << 7)
 #define IN_RIGHT        (1 << 8)
 #define IN_MOVELEFT     (1 << 9)
-#define IN_MOVERIGHT        (1 << 10)
+#define IN_MOVERIGHT    (1 << 10)
 #define IN_ATTACK2      (1 << 11)
 #define IN_RUN          (1 << 12)
 #define IN_RELOAD       (1 << 13)
@@ -72,6 +72,8 @@ public void OnPluginStart()
     g_cvDelay = CreateConVar("sm_otrespawn_delay", "8.0", "Cooldown for quick key respawn if spammed.", 0, true, 0.0);
     g_cvWinner = CreateConVar("sm_otrespawn_winner", "1", "Blocks fast key respawn for the winning team", 0, true, 0.0, true, 1.0);
     g_cvHud = CreateConVar("sm_otrespawn_hud", "1", "Toggles the respawn HUD on/off", 0, true, 0.0, true, 1.0);
+    g_cvBlue = CreateConVar("sm_otrespawn_blue", "1", "Enable/disable the respawn plugin for Blue team", 0, true, 0.0, true, 1.0);
+    g_cvRed = CreateConVar("sm_otrespawn_red", "1", "Enable/disable the respawn plugin for Red team", 0, true, 0.0, true, 1.0);
     
     AutoExecConfig(true, "ot_respawn");
 }
@@ -90,6 +92,10 @@ public void OnButtonPress(int client, int button)
     {
         int clientTeam = GetClientTeam(client);
         float gameTime = GetGameTime();
+        
+        if((clientTeam == 2 && !g_cvRed.BoolValue) || (clientTeam == 3 && !g_cvBlue.BoolValue)) {
+            return;
+        }
         
         if(g_cvLoser.BoolValue && g_iWinningTeam != 0 && clientTeam != g_iWinningTeam)
         {
@@ -150,6 +156,12 @@ public Action Timer_ShowHud(Handle timer, any serial)
     
     if(IsValidClient(client) && !IsPlayerAlive(client) && GetClientTeam(client) > 1)
     {
+        int clientTeam = GetClientTeam(client);
+        
+        if((clientTeam == 2 && !g_cvRed.BoolValue) || (clientTeam == 3 && !g_cvBlue.BoolValue)) {
+            return Plugin_Continue;
+        }
+        
         if(g_cvHud.BoolValue)
         {
             SetHudTextParams(-1.0, 0.8, 1.1, 255, 255, 255, 255);
