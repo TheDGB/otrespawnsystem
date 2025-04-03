@@ -170,6 +170,11 @@ public Action Timer_ShowHud(Handle timer, any serial)
         return Plugin_Continue;
     }
     
+    if(g_hRespawnTimer[client] == timer)
+    {
+        g_hRespawnTimer[client] = null;
+    }
+    
     return Plugin_Stop;
 }
 
