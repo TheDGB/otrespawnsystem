@@ -164,7 +164,24 @@ public Action Timer_ShowHud(Handle timer, any serial)
         
         if(g_cvHud.BoolValue)
         {
-            SetHudTextParams(-1.0, 0.8, 1.1, 255, 255, 255, 255);
+            int r = 255, g = 255, b = 255;
+            switch(clientTeam)
+            {
+                case 2: // RED
+                {
+                    r = 255;
+                    g = 45;
+                    b = 35;
+                }
+                case 3: // BLU
+                {
+                    r = 30;
+                    g = 65;
+                    b = 235;
+                }
+            }
+            
+            SetHudTextParams(-1.0, 0.8, 1.0, r, g, b, 255);
             ShowSyncHudText(client, g_hHudSync, "You are dead\nPress 'Reload' or '+reload' to revive quickly");
         }
         return Plugin_Continue;
