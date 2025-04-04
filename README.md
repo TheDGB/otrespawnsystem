@@ -14,6 +14,8 @@ Do you have a suggestion for the plugin? You can make a **pull request!**
 | `sm_otrespawn_delay`      | `8.0`             | Cooldown for quick key respawn if spammed.                                      |
 | `sm_otrespawn_winner`     | `1`               | Blocks fast key respawn for the winning team                                    |
 | `sm_otrespawn_hud`        | `1`               | Toggles the respawn HUD on/off                                                  |
+| `sm_otrespawn_blue`       | `1`               | Enable/disable the respawn plugin for Blue team                                 |
+| `sm_otrespawn_red`        | `1`               | Enable/disable the respawn plugin for Red team                                  |
 
 #### Dependencies.
 - Sourcemod 1.12+
