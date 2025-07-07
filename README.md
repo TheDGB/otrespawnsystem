@@ -26,4 +26,5 @@ Do you have a suggestion for the plugin? You can make a **pull request!**
 
 # **Enjoy the plugin!**
 
+[![](https://dcbadge.limes.pink/api/server/xftqrvZSAw)](https://discord.gg/xftqrvZSAw)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
