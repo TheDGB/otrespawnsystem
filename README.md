@@ -28,4 +28,6 @@ Do you have a suggestion for the plugin? You can make a **pull request!**
 
 [![](https://dcbadge.limes.pink/api/server/xftqrvZSAw)](https://discord.gg/xftqrvZSAw)
 
+[![](http://fastdl.optr.me:8090/embed/steamgroup.png)](https://steamcommunity.com/groups/optr-me)
+
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
